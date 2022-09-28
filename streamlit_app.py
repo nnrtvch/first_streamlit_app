@@ -1,3 +1,3 @@
-import streamlit l
+import streamlit as l
 
 l.title('MY')
