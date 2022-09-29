@@ -34,7 +34,6 @@ try:
     lit.dataframe(back_from_function)
 except URLError as e:
    lit.error()
-lit.stop()
 
 lit.header("Fruit load list contains:")
 
@@ -48,6 +47,7 @@ if lit.button('Get fruit list'):
   my_data_row = get_fruit_load_list()
   lit.dataframe(my_data_row)
 
+lit.stop()
 
 add_my_fruit = lit.text_input('What fruit would you like to add?','Kiwi')
 lit.write('The user entered ', fruit_choice)
