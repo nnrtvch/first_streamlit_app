@@ -18,8 +18,8 @@ lit.dataframe(fruits_to_show)
 
 import requests
 lit.header("Fruityvice Fruit Advice!")
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-lit.text(fruityvice_response.json())
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "watermelon")
+
 # getting json and normilizing 
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # making a table from json
