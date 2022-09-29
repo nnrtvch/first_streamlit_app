@@ -19,17 +19,19 @@ fruits_selected  = lit.multiselect('Pick some fruits: ', list(my_fruit_list.inde
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 lit.dataframe(fruits_to_show)
 
+def get_fruityvice_data(this_fruit_choice):
+  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+  fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+  return fruityvice_normalized
+
 lit.header("Fruityvice Fruit Advice!")
 try:
   fruit_choice = lit.text_input('What fruit would you like information about?')
   if not fruit_choice:
     lit.error("Please select a fruit to get info.")
   else:
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-    # getting json and normilizing 
-    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-    # making a table from json
-    lit.dataframe(fruityvice_normalized)
+    back_from_function = get_fruityvice_data(fruit_choice)
+    lit.dataframe(back_from_function)
 except URLError as e:
    lit.error()
 lit.stop()
