@@ -20,3 +20,7 @@ import requests
 lit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 lit.text(fruityvice_response.json())
+# getting json and normilizing 
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+# making a table from json
+lit.dataframe(fruityvice_normalized)
