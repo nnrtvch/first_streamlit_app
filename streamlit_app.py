@@ -1,5 +1,7 @@
 import streamlit as lit
 import pandas as pd
+import requests
+import snowflake.connector
 
 lit.title('My parents new Healthy Menu')
 lit.header('Breakfast Favorites')
@@ -16,7 +18,6 @@ fruits_selected  = lit.multiselect('Pick some fruits: ', list(my_fruit_list.inde
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 lit.dataframe(fruits_to_show)
 
-import requests
 lit.header("Fruityvice Fruit Advice!")
 
 fruit_choice = lit.text_input('What fruit would you like information about?','Kiwi')
