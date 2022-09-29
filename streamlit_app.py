@@ -49,6 +49,13 @@ if lit.button('Get fruit list'):
 
 lit.stop()
 
-add_my_fruit = lit.text_input('What fruit would you like to add?','Kiwi')
-lit.write('The user entered ', fruit_choice)
-#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+def insert_row_snowflake(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into fruit_load_list values ('" + new_fruit + "')")
+    return "Thanks for adding " + new_fruit
+
+add_my_fruit = lit.text_input('What fruit would you like to add?')
+if lit.button('Add a fruit to the list'):
+  my_cnx = snowflake.connector.connect(**lit.secrets["snowflake"])
+  back_from_func  = insert_row_snowflake(add_my_fruit)
+  lit.text(back_from_func)
