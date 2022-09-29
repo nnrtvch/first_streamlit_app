@@ -18,7 +18,10 @@ lit.dataframe(fruits_to_show)
 
 import requests
 lit.header("Fruityvice Fruit Advice!")
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "watermelon")
+
+fruit_choice = lit.text_input('What fruit would you like information about?','Kiwi')
+lit.write('The user entered ', fruit_choice)
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
 # getting json and normilizing 
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
